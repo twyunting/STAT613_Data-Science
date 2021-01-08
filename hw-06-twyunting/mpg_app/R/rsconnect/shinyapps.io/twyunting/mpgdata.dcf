@@ -1,0 +1,12 @@
+name: mpgdata
+title: mpgdata
+username:
+account: twyunting
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3118956
+bundleId: 3795072
+url: https://twyunting.shinyapps.io/mpgdata/
+when: 1603946309.93706
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+author: "Yunting Chiu"
+date: "10/16/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(broom)
+mpg %>%
+  select_if(is.character) 
+```
+
+```{r}
+mtcars
+```
+- Transform the data so AC, Pool and Highway are factors and Price is in thousands of dollars.
+```{r}
+# Transform the data so AC, Pool and Highway are factors and Price is in thousands of dollars.
+estate <- read_csv("../housing_app/data/estate.csv",
+                   col_types = cols("AC" = col_factor(),
+                                    "Pool" = col_factor(),
+                                    "Highway" = col_factor())) %>%
+          mutate(Price = Price/1000) %>%
+          rename("Price($K)" = "Price") %>%
+          mutate(AC = fct_recode(AC, "Presence" = "1", "Absence" = "0"),
+                 Pool = fct_recode(Pool, "Pool" = "1", "No Pool" = "0"),
+                 Highway = fct_recode(Highway, "Adjacent" = "1", "Not Adjacent" = "0")) -> estate
+estate
+```
+
+```{r}
+ estate %>% 
+  select(Area,Year) %>%
+    log() -> RegData
+augment(lm(Area~Year, data = RegData)) %>%
+  ggplot(aes(x = .fitted, y = .resid)) + geom_point()
+
+```
+
+
+- check NA
+```{r}
+estate %>% 
+summarize(across(everything(), ~sum(is.na(.))))
+```
+
+
+```{r}
+library(ggstance)
+
+# With ggplot2 we need coord_flip():
+ggplot(mpg, aes(class, hwy, fill = factor(cyl))) +
+  geom_boxplot() +
+  coord_flip()
+
+# With ggstance we use the h-suffixed version:
+ggplot(mpg, aes(hwy, class, fill = factor(cyl))) +
+  geom_boxploth()
+
+# With facets ggstance horizontal layers are often the only way of
+# having all ggplot features working correctly, for instance free
+# scales:
+df <- data.frame(
+  Group = factor(rep(1:3, each = 4), labels = c("Drug A", "Drug B", "Control")),
+  Subject = factor(rep(1:6, each = 2), labels = c("A", "B", "C", "D", "E", "F")),
+  Result = rnorm(12)
+)
+
+ggplot(df, aes(Result, Subject))+
+  geom_boxploth(aes(fill = Group))+
+  facet_grid(Group ~ ., scales = "free_y")
+```
+

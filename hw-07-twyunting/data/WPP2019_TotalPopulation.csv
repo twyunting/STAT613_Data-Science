@@ -1,0 +1,478 @@
+LocID,Location,PopTotal,PopDensity
+4,Afghanistan,38041.757,58.269
+8,Albania,2880.913,105.143
+12,Algeria,43053.054,18.076
+16,American Samoa,55.312,276.56
+20,Andorra,77.146,164.14
+24,Angola,31825.299,25.528
+28,Antigua and Barbuda,97.115,220.716
+31,Azerbaijan,10047.719,121.558
+32,Argentina,44780.675,16.363
+36,Australia,25203.2,3.281
+40,Austria,8955.108,108.667
+44,Bahamas,389.486,38.91
+48,Bahrain,1641.164,2159.426
+50,Bangladesh,163046.173,1252.563
+51,Armenia,2957.728,103.889
+52,Barbados,287.021,667.491
+56,Belgium,11539.326,381.087
+60,Bermuda,62.508,1250.16
+64,Bhutan,763.094,20.02
+68,Bolivia (Plurinational State of),11513.102,10.628
+70,Bosnia and Herzegovina,3300.998,64.725
+72,Botswana,2303.703,4.065
+76,Brazil,211049.519,25.251
+84,Belize,390.351,17.113
+90,Solomon Islands,669.821,23.931
+92,British Virgin Islands,30.033,200.22
+96,Brunei Darussalam,433.296,82.219
+100,Bulgaria,7000.117,64.482
+104,Myanmar,54045.422,82.728
+108,Burundi,11530.577,449.01
+112,Belarus,9452.409,46.584
+116,Cambodia,16486.542,93.398
+120,Cameroon,25876.387,54.741
+124,Canada,37411.038,4.114
+132,Cabo Verde,549.936,136.461
+136,Cayman Islands,64.948,270.617
+140,Central African Republic,4745.179,7.617
+144,Sri Lanka,21323.734,340.037
+148,Chad,15946.882,12.664
+152,Chile,18952.035,25.489
+156,China,1433783.692,152.722
+158,"China, Taiwan Province of China",23773.881,671.389
+170,Colombia,50339.443,45.371
+174,Comoros,850.891,457.222
+175,Mayotte,266.153,709.741
+178,Congo,5380.504,15.756
+180,Democratic Republic of the Congo,86790.568,38.283
+184,Cook Islands,17.547,73.112
+188,Costa Rica,5047.561,98.855
+191,Croatia,4130.299,73.808
+192,Cuba,11333.484,106.478
+196,Cyprus,1198.574,129.716
+203,Czechia,10689.213,138.39
+204,Benin,11801.151,104.657
+208,Denmark,5771.877,136.033
+212,Dominica,71.808,95.744
+214,Dominican Republic,10738.957,222.247
+218,Ecuador,17373.657,69.954
+222,El Salvador,6453.55,311.465
+226,Equatorial Guinea,1355.982,48.342
+231,Ethiopia,112078.727,112.079
+232,Eritrea,3497.117,34.625
+233,Estonia,1325.649,31.273
+234,Faroe Islands,48.677,34.869
+238,Falkland Islands (Malvinas),3.372,0.277
+242,Fiji,889.955,48.711
+246,Finland,5532.159,18.204
+250,France,65129.731,118.946
+254,French Guiana,290.823,3.538
+258,French Polynesia,279.285,76.307
+262,Djibouti,973.557,42
+266,Gabon,2172.578,8.432
+268,Georgia,3996.762,57.516
+270,Gambia,2347.696,231.986
+275,State of Palestine,4981.422,827.479
+276,Germany,83517.046,239.606
+288,Ghana,30417.858,133.681
+292,Gibraltar,33.706,3370.6
+296,Kiribati,117.608,145.195
+300,Greece,10473.452,81.253
+304,Greenland,56.66,0.138
+308,Grenada,112.002,329.418
+312,Guadeloupe,400.048,245.73
+316,Guam,167.295,309.806
+320,Guatemala,17581.476,164.068
+324,Guinea,12771.246,51.975
+328,Guyana,782.775,3.977
+332,Haiti,11263.079,408.675
+336,Holy See,0.815,1852.273
+340,Honduras,9746.115,87.104
+344,"China, Hong Kong SAR",7436.157,7082.054
+348,Hungary,9684.68,106.978
+352,Iceland,339.037,3.382
+356,India,1366417.756,459.58
+360,Indonesia,270625.567,149.387
+364,Iran,82913.893,50.913
+368,Iraq,39309.789,90.509
+372,Ireland,4882.498,70.874
+376,Israel,8519.373,393.686
+380,Italy,60550.092,205.855
+384,Cote d'Ivoire,25716.554,80.87
+388,Jamaica,2948.277,272.232
+392,Japan,126860.299,347.987
+398,Kazakhstan,18551.428,6.872
+400,Jordan,10101.697,113.783
+404,Kenya,52573.967,92.374
+408,Dem. People's Republic of Korea,25666.158,213.156
+410,Republic of Korea,51225.321,526.847
+414,Kuwait,4207.077,236.087
+417,Kyrgyzstan,6415.851,33.451
+418,Lao People's Democratic Republic,7169.456,31.064
+422,Lebanon,6855.709,670.157
+426,Lesotho,2125.267,70.002
+428,Latvia,1906.74,30.655
+430,Liberia,4937.374,51.26
+434,Libya,6777.453,3.852
+438,Liechtenstein,38.02,237.625
+440,Lithuania,2759.631,44.032
+442,Luxembourg,615.73,237.734
+446,"China, Macao SAR",640.446,21419.599
+450,Madagascar,26969.306,46.355
+454,Malawi,18628.749,197.59
+458,Malaysia,31949.789,97.245
+462,Maldives,530.957,1769.857
+466,Mali,19658.023,16.111
+470,Malta,440.377,1376.178
+474,Martinique,375.557,354.299
+478,Mauritania,4525.698,4.391
+480,Mauritius,1269.67,625.453
+484,Mexico,127575.529,65.627
+492,Monaco,38.967,26152.349
+496,Mongolia,3225.166,2.076
+498,Republic of Moldova,4043.258,123.082
+499,Montenegro,627.988,46.691
+500,Montserrat,4.991,49.91
+504,Morocco,36471.766,81.72
+508,Mozambique,30366.043,38.615
+512,Oman,4974.992,16.074
+516,Namibia,2494.524,3.03
+520,Nauru,10.764,538.2
+524,Nepal,28608.715,199.572
+528,Netherlands,17097.123,507.032
+531,Curaçao,163.423,368.07
+533,Aruba,106.31,590.611
+534,Sint Maarten (Dutch part),42.389,1246.735
+535,"Bonaire, Sint Eustatius and Saba",25.983,79.216
+540,New Caledonia,282.757,15.468
+548,Vanuatu,299.882,24.601
+554,New Zealand,4783.062,18.165
+558,Nicaragua,6545.503,54.392
+562,Niger,23310.719,18.403
+566,Nigeria,200963.603,220.652
+570,Niue,1.614,6.208
+578,Norway,5378.859,14.726
+580,Northern Mariana Islands,57.213,124.376
+583,Micronesia (Fed. States of),113.811,162.587
+584,Marshall Islands,58.791,326.617
+585,Palau,18.001,39.133
+586,Pakistan,216565.317,280.933
+591,Panama,4246.44,57.122
+598,Papua New Guinea,8776.119,19.379
+600,Paraguay,7044.639,17.731
+604,Peru,32510.462,25.399
+608,Philippines,108116.622,362.601
+616,Poland,37887.771,123.723
+620,Portugal,10226.178,111.652
+624,Guinea-Bissau,1920.917,68.311
+626,Timor-Leste,1293.12,86.962
+630,Puerto Rico,2933.404,330.711
+634,Qatar,2832.071,243.934
+638,Réunion,888.932,355.573
+642,Romania,19364.558,84.132
+643,Russian Federation,145872.26,8.907
+646,Rwanda,12626.938,511.834
+652,Saint Barthélemy,9.853,447.864
+654,Saint Helena,6.061,15.541
+659,Saint Kitts and Nevis,52.834,203.208
+660,Anguilla,14.872,165.244
+662,Saint Lucia,182.795,299.664
+663,Saint Martin (French part),38.002,717.019
+666,Saint Pierre and Miquelon,5.821,25.309
+670,Saint Vincent and the Grenadines,110.593,283.572
+674,San Marino,33.864,564.4
+678,Sao Tome and Principe,215.048,224.008
+682,Saudi Arabia,34268.529,15.941
+686,Senegal,16296.362,84.643
+688,Serbia,8772.228,100.3
+690,Seychelles,97.741,212.48
+694,Sierra Leone,7813.207,108.246
+702,Singapore,5804.343,8291.919
+703,Slovakia,5457.012,113.48
+704,Viet Nam,96462.108,311.098
+705,Slovenia,2078.654,103.21
+706,Somalia,15442.906,24.616
+710,South Africa,58558.267,48.272
+716,Zimbabwe,14645.473,37.858
+724,Spain,46736.782,93.698
+728,South Sudan,11062.114,18.106
+729,Sudan,42813.237,24.256
+732,Western Sahara,582.458,2.19
+740,Suriname,581.363,3.727
+748,Eswatini,1148.133,66.752
+752,Sweden,10036.391,24.459
+756,Switzerland,8591.361,217.415
+760,Syrian Arab Republic,17070.132,92.959
+762,Tajikistan,9321.023,66.598
+764,Thailand,69625.581,136.283
+768,Togo,8082.359,148.6
+772,Tokelau,1.33,133
+776,Tonga,104.497,145.135
+780,Trinidad and Tobago,1394.969,271.924
+784,United Arab Emirates,9770.526,116.872
+788,Tunisia,11694.721,75.275
+792,Turkey,83429.607,108.402
+795,Turkmenistan,5942.094,12.645
+796,Turks and Caicos Islands,38.194,40.204
+798,Tuvalu,11.655,388.5
+800,Uganda,44269.587,221.558
+804,Ukraine,43993.643,75.94
+807,North Macedonia,2083.458,82.611
+818,Egypt,100388.076,100.847
+826,United Kingdom,67530.161,279.131
+830,Channel Islands,172.264,906.653
+833,Isle of Man,84.589,148.402
+834,United Republic of Tanzania,58005.461,65.484
+840,US,329064.917,35.974
+850,United States Virgin Islands,104.579,298.797
+854,Burkina Faso,20321.383,74.274
+858,Uruguay,3461.731,19.779
+860,Uzbekistan,32981.715,77.531
+862,Venezuela (Bolivarian Republic of),28515.829,32.329
+876,Wallis and Futuna Islands,11.436,81.686
+882,Samoa,197.093,69.644
+887,Yemen,29161.922,55.234
+894,Zambia,17861.034,24.026
+900,World,7713468.205,59.291
+901,More developed regions,1270630.32,25.88
+902,Less developed regions,6442837.885,79.544
+903,Africa,1308064.176,44.119
+904,Latin America and the Caribbean,648120.956,32.182
+905,Northern America,366600.944,19.655
+906,Eastern Asia,1672611.12,144.684
+908,Europe,747182.815,33.756
+909,Oceania,42128.048,4.964
+910,Eastern Africa,433904.943,65.078
+911,Middle Africa,174308.427,26.83
+912,Northern Africa,241780.765,31.119
+913,Southern Africa,66629.894,25.137
+914,Western Africa,391440.147,64.551
+915,Caribbean,43335.006,191.74
+916,Central America,177586.525,72.417
+917,Europe,747182.815,33.756
+918,Northern America,366600.944,19.655
+920,South-Eastern Asia,662011.846,152.513
+921,Central and Southern Asia,1991423.507,192.838
+922,Western Asia,275324.793,57.299
+923,Eastern Europe,293444.921,16.255
+924,Northern Europe,105768.532,62.128
+925,Southern Europe,152446.95,117.727
+926,Western Europe,195522.412,180.239
+927,Australia/New Zealand,29986.262,3.774
+928,Melanesia,10918.534,20.617
+931,South America,427199.425,24.466
+934,"Less developed regions, excluding least developed countries",5409449.017,88.885
+935,Asia,4601371.266,148.273
+941,Least developed countries,1033388.868,51.315
+947,Sub-Saharan Africa,1066283.411,48.735
+948,"Less developed regions, excluding China",4977203.709,69.541
+954,Micronesia,543.483,171.446
+957,Polynesia,679.769,84.026
+986,European Union (EU: 28),512516.929,120.883
+1054,ESCAP: ASEAN,660718.726,152.738
+1055,ESCAP: ECO,504210.404,64.383
+1056,ESCAP: SAARC,1835297.503,384.631
+1057,ESCAP: Central Asia,90214.32,21.964
+1058,ESCAP: Pacific island dev. econ.,12129.02,22.432
+1059,ESCAP: Least Developed Countries (LDCs),310553.245,149.233
+1060,ESCAP: Landlocked countries (LLDCs),164025.746,24.641
+1062,ESCAP: low income,2073030.029,277.71
+1064,ESCAP: high income,222836.176,26.423
+1065,ESCAP: other Asia-Pacific countries/areas,197481.05,50.882
+1071,ESCAP region: East and North-East Asia,1648837.239,143.066
+1072,ESCAP region: South-East Asia,662011.846,152.513
+1073,ESCAP region: South and South-West Asia,2001641.003,279.178
+1074,ESCAP region: North and Central Asia,236086.58,11.525
+1075,ESCAP region: Pacific,42115.282,4.963
+1105,China (and dependencies),1465634.176,155.51
+1106,Denmark (and dependencies),5877.214,12.938
+1107,France (and dependencies),67978.398,103.357
+1108,Netherlands (and dependencies),17435.228,502.369
+1109,New Zealand (and dependencies),4803.553,18.208
+1110,United Kingdom (and dependencies),68045.699,264.934
+1111,United States of America (and dependencies),332382.72,36.295
+1200,"African, Caribbean and Pacific (ACP) Group of States",1150190.575,47.628
+1207,Asia-Pacific Economic Cooperation (APEC),2956245.278,49.16
+1321,South Asian Association for Regional Cooperation (SAARC),1835297.503,384.631
+1475,Least developed: Africa,682410.622,38.991
+1476,Least developed: Asia,338616.201,131.863
+1477,Least developed: Latin America and the Caribbean,11263.079,408.675
+1478,Least developed: Oceania,1098.966,26.791
+1479,Less developed: Africa,1308064.176,44.119
+1480,Less developed: Asia,4474510.967,145.899
+1481,Less developed: Latin America and the Caribbean,648120.956,32.182
+1482,Less developed: Oceania,12141.786,22.449
+1483,More developed: Asia,126860.299,347.987
+1484,More developed: Europe,747182.815,33.756
+1485,More developed: Northern America,366600.944,19.655
+1486,More developed: Oceania,29986.262,3.774
+1500,Low-income countries,755849.741,50.919
+1501,Lower-middle-income countries,3057708.884,142.498
+1502,Upper-middle-income countries,2638958.43,47.516
+1503,High-income countries,1258043.484,33.206
+1505,Organisation for Economic Co-operation and Development (OECD),1307716.642,37.94
+1506,Europe (48),747182.815,33.756
+1508,WB region: Sub-Saharan Africa (excluding high income),1106864.204,46.867
+1509,WB region: East Asia and Pacific (excluding high income),2129754.531,133.831
+1510,WB region: Europe and Central Asia (excluding high income),421035.757,18.62
+1511,WB region: Latin America and Caribbean (excluding high income),569811.869,34.991
+1512,WB region: Middle East and North Africa (excluding high income),389753.191,45.105
+1513,WB region: South Asia (excluding high income),1835297.503,384.631
+1517,Middle-income countries,5696667.314,73.986
+1518,No income group available,2907.666,7.907
+1520,North American Free Trade Agreement (NAFTA),494051.484,24.476
+1521,Organization of Petroleum Exporting countries (OPEC),507887.773,41.057
+1522,Group of Seven (G7),770063.284,38.431
+1523,Group of Eight (G8),915935.544,25.153
+1524,Group of Twenty (G20) - member states,4622853.206,61.199
+1525,BRIC,3157123.227,85.106
+1526,BRICS,3215681.494,83.94
+1527,Black Sea Economic Cooperation (BSEC),342832.245,18.51
+1530,Caribbean Community and Common Market (CARICOM),18669.459,43.165
+1532,Latin American Integration Association (ALADI),568696.545,29.715
+1533,Andean Community,111736.664,30.027
+1534,Southern Common Market (MERCOSUR),306365.495,22.473
+1536,Greater Arab Free Trade Area (GAFTA),406373.337,35.875
+1538,Economic Community of Central African States (ECCAS),198465.942,30.313
+1540,Economic Community of West African States (ECOWAS),386908.388,76.875
+1543,West African Economic and Monetary Union (UEMOA),127107.468,36.67
+1544,European Free Trade Agreement (EFTA),14347.277,28.4
+1545,Central European Free Trade Agreement (CEFTA),25839.142,88.086
+1546,Eurasian Economic Community (Eurasec),222594.686,11.109
+1547,Economic Cooperation Organization (ECO),504210.404,64.383
+1549,European Union (EU: 15),408593.654,130.707
+1550,European Community (EC: 12),384069.996,164.88
+1552,New EU member states (joined since 2004),103923.275,93.31
+1555,North Atlantic Treaty Organization (NATO),940604.181,41.107
+1556,Group of 77 (G77),6060094.962,81.595
+1557,Association of Southeast Asian Nations (ASEAN),660718.726,152.738
+1559,"League of Arab States (LAS, informal name: Arab League)",428166.389,32.909
+1560,African Union,1306903.03,44.085
+1561,Gulf Cooperation Council (GCC),57694.359,22.423
+1563,East African Community (EAC),190068.644,82.066
+1564,Southern African Development Community (SADC),353940.129,36.688
+1566,Commonwealth of Independent States (CIS),289579.128,13.64
+1569,Bolivarian Alliance for the Americas (ALBA),58535.065,26.668
+1570,Organization of the Islamic Conference (OIC),1872842.323,60.068
+1585,UNICEF Programme Regions: Europe and Central Asia (CEECIS),279293.796,44.393
+1586,UNICEF Programme Regions: East Asia and Pacific (EAPRO),2129737.711,133.824
+1587,UNICEF Programme Regions: Eastern and Southern Africa (ESARO),528864.083,50.194
+1589,UNICEF Programme Regions: Latin America and Caribbean (LACRO),643172.779,32.124
+1590,UNICEF Programme Regions: Middle East and North Africa (MENARO),490260.787,37.773
+1591,UNICEF Programme Regions: South Asia (ROSA),1835297.503,384.631
+1592,UNICEF Programme Regions: West and Central Africa (WCARO),533917.214,47.192
+1593,WHO: African region (AFRO),1091758.856,46.247
+1594,WHO: European Region (EURO),930166.618,34.399
+1595,WHO: Eastern Mediterranean Region (EMRO),712276.291,56.34
+1596,WHO: Americas (AMRO),1009950.13,26.389
+1597,WHO: South-East Asia region (SEARO),2001946.277,309.953
+1598,WHO: Western Pacific region (WPRO),1922790.054,90.626
+1599,United Nations Member States,7707903.51,59.373
+1607,Land-locked Countries,583340.277,33.976
+1610,UNFPA: Asia and the Pacific (AP),4047949.107,181.404
+1611,UNFPA: Arab States (AS),370070.433,38.095
+1612,UNFPA: Eastern Europe and Central Asia (EECA),248170.834,42.183
+1613,UNFPA: Latin America and the Caribbean (LAC),644001.843,32.147
+1615,Non-Self-Governing Territories,1731.701,5.712
+1636,Land-locked Developing Countries (LLDC),520972.691,31.502
+1637,Small Island Developing States (SIDS),71428.827,59.714
+1638,Countries with Access to the Sea,7130128.743,63.141
+1674,Land-locked Countries (Others),62367.586,98.771
+1703,UNFPA: East and Southern Africa (ESA),601481.415,49.391
+1704,UNFPA: West and Central Africa (WCA),447126.646,49.424
+1730,United Nations Economic Commission for Africa (UN-ECA),1306320.572,44.464
+1735,UN-ECE: member countries,1296680.593,28.636
+1736,ECE: UNECE-52,1296492.596,28.632
+1737,ECE: North America-2,366475.955,20.091
+1744,ECLAC: Latin America,636072.786,32.41
+1745,United Nations Economic Commission for Latin America and the Caribbean (UN-ECLAC),648117.584,32.201
+1746,ECLAC: The Caribbean,12044.798,24.015
+1760,United Nations Economic and Social Commission for Asia and the Pacific (UN-ESCAP) Regions,4590691.95,88.272
+1765,ESCWA: member countries,367845.981,36.872
+1801,World Bank Regional Groups (developing only),6452517.055,70.258
+1818,UNICEF PROGRAMME REGIONS,6440543.873,78.708
+1819,UNFPA Regions,6358800.278,80.319
+1820,WHO Regions,7668888.226,59.34
+1822,UNITED NATIONS Regional Groups of Member States,7707903.418,59.373
+1823,African Group,1306320.572,44.464
+1824,Asia-Pacific Group,4582136.259,146.198
+1825,Eastern European Group,340313.688,18.217
+1826,Latin American and Caribbean Group (GRULAC),643474.175,32.125
+1827,Western European and Others Group (WEOG),919088.423,29.497
+1829,Europe and Northern America,1113783.759,27.308
+1830,Latin America and the Caribbean,648120.956,32.182
+1832,Eastern and South-Eastern Asia,2334622.966,146.821
+1833,Northern Africa and Western Asia,517105.558,41.123
+1835,Oceania (excluding Australia and New Zealand),12141.786,22.449
+2029,UNICEF Regions: Europe and Central Asia,922025.316,34.122
+2030,UNICEF Regions: Western Europe,496859.26,114.143
+2031,UNICEF Regions: Latin America and Caribbean,648120.956,32.182
+2032,UNICEF Regions: North America,366600.944,19.655
+2033,UNICEF Regions: Sub-Saharan Africa,1109096.648,46.908
+2034,UNICEF Regions: Eastern Europe and Central Asia,425166.056,18.756
+2035,UNICEF REGIONS,7713468.205,59.291
+2036,UNICEF Regions: East Asia and Pacific,2376751.014,97.457
+2037,UNICEF Regions: Middle East and North Africa,455575.824,39.689
+2038,UNICEF Regions: South Asia,1835297.503,384.631
+2039,UNICEF Regions: Eastern and Southern Africa,575173.373,46.649
+2040,UNICEF Regions: West and Central Africa,533923.275,47.191
+2041,UNICEF Programme Regions: Latin America,640775.552,32.019
+2042,UNICEF Programme Regions: Eastern Caribbean,2397.227,248.675
+2044,ESCAP: WB income groups,4590672.789,88.273
+2045,ESCAP: WB Low income econ.,92316.63,100.714
+2046,ESCAP: WB Lower middle income econ.,2387495.225,231.624
+2047,ESCAP: WB Upper middle income econ.,1887677.496,58.363
+2048,ESCAP: WB High income econ.,223183.438,26.452
+2049,ESCAP: HDI groups,4590691.95,88.272
+2050,ESCAP: low HDI,1911735.616,297.845
+2051,ESCAP: lower middle HDI,2057885.279,135.973
+2052,ESCAP: upper middle HDI,398460.423,18.081
+2053,ESCAP: high HDI,222610.632,26.453
+2054,ESCAP: income groups,4590691.95,88.272
+2055,ESCAP: lower middle income,580268.276,88.732
+2056,ESCAP: upper middle income,1714557.469,57.986
+2058,ESCAP: ADB Group A (Concessional assistance only),162966.739,71.714
+2059,ESCAP: ADB Group B (OCR blend),1792323.367,283.533
+2060,ESCAP: ADB Group C (Regular OCR only),2074290.326,129.007
+2061,ESCAP: ADB Developing member countries (DMCs),4029580.432,163.321
+2062,ESCWA: Arab countries,428166.389,32.909
+2063,ESCWA: Maghreb countries,97996.994,20.662
+2064,ESCWA: Mashreq countries,178706.825,103.994
+2065,ESCWA: Gulf Cooperation Council countries,57694.359,22.423
+2066,ESCWA: Arab least developed countries,93768.211,23.583
+2067,Belt-Road Initiative (BRI),3353564.722,49.727
+2068,Belt-Road Initiative: Africa,1164118.622,48.048
+2069,Belt-Road Initiative: Asia,1552928.523,90.467
+2070,Belt-Road Initiative: Europe,414572.416,21.705
+2071,Belt-Road Initiative: Latin America and the Caribbean,206761.581,33.384
+2072,Belt-Road Initiative: Pacific,15183.58,20.208
+2073,Shanghai Cooperation Organization (SCO),3229909.042,97.977
+2074,Commonwealth of Nations,2529752.075,84.391
+2075,Commonwealth: Africa,569747.835,74.477
+2076,Commonwealth: Asia,1805540.408,422.698
+2077,Commonwealth: Caribbean and Americas,44231.064,4.734
+2078,Commonwealth: Europe,69169.112,275.037
+2079,Commonwealth: Pacific,41063.656,4.853
+2080,African Union: Central Africa,154013.705,29.192
+2081,African Union: Eastern Africa,382531.219,59.835
+2082,African Union: Northern Africa,203493.226,28.925
+2083,African Union: Southern Africa,179956.492,30.458
+2084,African Union: Western Africa,386908.388,76.875
+2085,Organization of American States (OAS),1009950.13,26.389
+2086,Organization for Security and Co-operation in Europe (OSCE),1291387.201,27.586
+2087,LLDC: Africa,332262.488,39.827
+2088,LLDC: Asia,164025.746,24.641
+2089,LLDC: Europe,6126.716,105.506
+2090,LLDC: Latin America,18557.741,12.534
+2091,SIDS Caribbean,43309.023,191.904
+2092,SIDS Pacific,12129.02,22.432
+2093,"SIDS Atlantic, and Indian Ocean, Mediterranean and South China Sea (AIMS)",15990.784,37.205
+2094,Countries with Access to the Sea: Africa,975801.688,45.8
+2095,Countries with Access to the Sea: Asia,4437345.52,182.034
+2096,Countries with Access to the Sea: Europe,678689.328,31.647
+2097,Countries with Access to the Sea: Latin America and the Caribbean,629563.215,33.741
+2098,Countries with Access to the Sea: Northern America,366600.944,19.655
+2099,Countries with Access to the Sea: Oceania,42128.048,4.964
+5500,Central Asia,73212.111,18.644
+5501,Southern Asia,1918211.396,299.715

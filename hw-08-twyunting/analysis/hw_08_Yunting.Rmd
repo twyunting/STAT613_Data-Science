@@ -1,0 +1,377 @@
+---
+title: "STAT 413/613 Homework: Tidy Text"
+author: "Yunting Chiu"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: yes
+    number_sections: yes
+    toc_depth: '4'
+  html_document:
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+                      fig.align  = "center",
+                      fig.height = 5, 
+                      fig.width  = 6)
+```
+
+# Instructions {-}
+1. Clone this homework repo to your homework directory as a new repo.
+2. Rename the starter file under the analysis directory as `hw_01_yourname.Rmd` and use it for your solutions.   
+3. Modify the "author" field in the YAML header.  
+4. Stage and Commit R Markdown and HTML files (no PDF files).   
+5. **Push both .Rmd and HTML files to GitHub**.   
+- Make sure you have knitted to HTML prior to staging, committing, and pushing your final submission.  
+6. **Commit each time you answer a part of question, e.g. 1.1**   
+7. **Push to GitHub after each major question**   
+8. When complete, submit a response in Canvas  
+
+- Only include necessary code to answer the questions.
+- Most of the functions you use should be from the tidyverse. 
+- Unnecessary Base R or other packages not covered in class will result in point deductions.
+- Use Pull requests and or email to ask me any questions. If you email, please ensure your most recent code is pushed to GitHub.
+
+# Sentiment Analysis
+0. libraries
+```{r}
+library(tidyverse)
+library(tidytext)
+library(gutenbergr)
+```
+
+1. Download the following two works from the early 20^th^ century from Project Gutenberg:
+- Upton Sinclair: "*The Jungle*" (1906)
+- W.E.B. Du Bois: "*The Quest of the Silver Fleece*" (1911)
+```{r, warning = FALSE}
+# check each gutenberg ID
+#gutenberg_works() %>%
+  #(title == "The Jungle")
+#gutenberg_works() %>%
+  #filter(str_detect(author," Bois"))
+ 
+theJungle <- gutenberg_download(140)
+theQuest <- gutenberg_download(15265)
+```
+
+2. Write a function to take an argument of a downloaded book tibble and return it in tidy text format.
+- The function must add line and chapter numbers as variables
+- The function must unnest tokens at the word level
+- The function must remove any Project Gutenberg formatting so only the words remain
+- The function must remove any stop_words and filter out any `NA`s
+```{r}
+tidyJungleAndQuest <- function(tidyBooks){
+  stopifnot(is.data.frame(tidyBooks))
+  if(tidyBooks$gutenberg_id[[1]] == 140){
+  theJungle %>%
+  mutate(linenumber = row_number(),
+         chapter = cumsum(str_detect(text,regex( "^chapter [\\divxlc]", 
+                                                 ignore_case = TRUE)))) %>% 
+  ungroup() %>%
+  unnest_tokens(word, text) %>%
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!is.na(word)) -> theJungle
+  return(theJungle)
+    }else if(tidyBooks$gutenberg_id[[1]] == 15265){
+  theQuest %>% 
+  mutate(linenumber = row_number(),
+         text = recode(text, "_Contents_" = "Contents",
+                       "_Note_" = "Note"),
+         chapter = cumsum(str_detect(text,regex( "(^_)([a-z]+)([-]{0,1})([a-z]+)(_$)", 
+                                                 ignore_case = TRUE)))) %>%
+  ungroup() %>%
+  unnest_tokens(word, text) %>%
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!is.na(word)) ->  theQuest
+  return(theQuest)
+    }
+}
+
+```
+
+3. Use the function from step 2
+- Tidy each book and then add `book` and `author` as variables and save each tibble to a new variable.
+```{r}
+theJungle %>%
+  tidyJungleAndQuest() %>%
+  mutate(book = "The Jungle",
+         author = "Sinclair, Upton") -> theJungle
+
+theQuest %>%
+  tidyJungleAndQuest() %>%
+  mutate(book = "The Quest of the Silver Fleece: A Novel",
+         author = "Du Bois, W. E. B. (William Edward Burghardt)") -> theQuest 
+```
+
+4. Use a dplyr function to combine the two tibbles into a new tibble. 
+- It should have 89,513 rows with 6 variables
+```{r}
+theJungle %>%
+  full_join(theQuest,
+            by = c("gutenberg_id", "linenumber", "chapter", 
+                   "word", "book", "author")) -> jungleAndQuest 
+```
+
+5. Measure the net sentiment using bing for each block of 50 lines
+- Plot the sentiment for each book in an appropriate faceted plot - either line or column. 
+- Be sure to remove the legend.
+- Save the plot to a variable
+- Interpret the plots for each book and then compare them.
+- **Interpretation: In the following plot, `The Quest of the Silver` has more negative words than `The Jungle`. The majority of both contents have a negative sentiment.**
+```{r}
+jungleAndQuest %>%
+  inner_join(get_sentiments("bing"), by = "word") %>% 
+  count(index = linenumber %/% 50, sentiment, book, sort = TRUE) %>%
+  pivot_wider(names_from = sentiment, values_from = n, 
+              values_fill = list(n = 0)) %>%
+  mutate(net = positive - negative) -> jungleAndQuestBing50
+
+ggplot(data = jungleAndQuestBing50, aes(x = index, y = net, fill = book)) + 
+  geom_col(show.legend = FALSE) +
+  theme_bw() +
+  facet_wrap(~book, ncol = 2, scales = "free_x") -> bing50
+plot(bing50)
+```
+ 
+6. Measure the total for each nrc sentiment in each block of 500 lines and then,
+- Filter out the "positive" and "negative" and save to a new variable. You should have 456 observations.
+- Plot the count of the sentiments for each block in each book in an appropriate faceted plot with the books in two columns and the sentiments in 8 rows. 
+- Be sure to remove the legend.
+- Interpret the plots for each book and then compare them. 
+- **Interpretation: Interestingly, these two books share the similarities on each block across 500 lines have abundant sentiment of structures.**
+```{r}
+get_sentiments("nrc") %>%
+  filter(sentiment != "positive" & sentiment != "negative") %>%
+  inner_join(jungleAndQuest, by = "word") %>%
+  count(index = linenumber %/% 500, sentiment, book, sort = TRUE) -> 
+  nrcSentimentsNoPosNeg
+
+ggplot(data = nrcSentimentsNoPosNeg, 
+       aes(x = index, y = n, fill = sentiment)) + 
+  geom_col(show.legend = F) +
+  theme_bw() +
+  facet_wrap(~book) +
+  labs(x = "nrc sentiment", y = "count") +
+  coord_flip()
+```
+ 
+7. Using bing, create a new data frame with the counts of the positive and negative sentiment words for each book.
+- Show the 20 most frequent words across all book along with their book, sentiment, and count, in descending order by count.
+```{r}
+jungleAndQuest %>%
+  inner_join(get_sentiments("bing"), by = "word") %>% 
+  count(book, word, sentiment, sort = TRUE) %>%
+  ungroup() -> bingSentimentsJungleAndQuest
+
+head(bingSentimentsJungleAndQuest, 20)
+```
+
+8. Plot the top ten for each positive and negative sentiment faceting by book.
+- Ensure each facet has the words in the proper order for that book.
+- Identify any that may be inappropriate and should be excluded from the sentiment analysis.
+- **We need to remove the word `miss` from the bing sentiment lexicon, because miss is not totally a negative word. For instance: I miss you baby.**
+```{r}
+bingSentimentsJungleAndQuest %>%
+  group_by(book, sentiment) %>%
+  slice_max(order_by = n, n = 10) %>% 
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = word, y = n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(sentiment ~ book, scales = "free_y") +
+  labs(y = "Contribution to sentiment", x = NULL) +
+  coord_flip()
+  # theme(strip.background = element_blank(), strip.placement = "outside") #review HW1
+```
+
+9. Remove the inappropriate word(s) from the analysis.
+- Replot the top 10 for each sentiment per book from step 8.
+- Interpret the plots
+- **Interpretation: After removing the word `miss`, we can detect that `The Quest` has many negative sentiments. Based on the top ten ranking for each, Negative sentiments are more than positive sentiments in both books.**
+```{r}
+# remove the word “miss” from the bing sentiment lexicon.
+get_sentiments("bing") %>%
+  filter(word != "miss") -> bing_no_miss
+
+# redo the analysis from the beginning
+jungleAndQuest %>%
+  inner_join(bing_no_miss, by = "word") %>%
+  count(book, word, sentiment, sort = TRUE) %>%
+  ungroup() -> bing_word_counts
+
+# visualize it
+bing_word_counts %>%
+ group_by(book, sentiment) %>%
+  slice_max(order_by = n, n = 10) %>% 
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = word, y = n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(sentiment ~ book, scales = "free_y") +
+  labs(y = "Contribution to sentiment", x = NULL) +
+  coord_flip()
+```
+
+10. Extra Credit
+- Rerun the analysis from step 5 and recreate the plot with the title "Custom Bing".
+- Show both the original step 5 plot with the new plot in the same output graphic, one on top of the other. 
+- Interpret the plots
+- **Interpretation: although we filter out `miss`,the plot shows there is no big change in the analysis.**
+```{r, warning = FALSE}
+# original code in 1.5 
+jungleAndQuest %>%
+  inner_join(get_sentiments("bing"), by = "word") %>% 
+  count(index = linenumber %/% 50, sentiment, book, sort = TRUE) %>%
+  pivot_wider(names_from = sentiment, values_from = n, 
+              values_fill = list(n = 0)) %>%
+  mutate(net = positive - negative) %>%
+  ggplot(aes(x = index, y = net, fill = book)) + 
+  geom_col(show.legend = FALSE) +
+  theme_bw() +
+  facet_wrap(~book, ncol = 2, scales = "free_x") +
+  ggtitle("With Miss as Negative") -> p1
+  
+# No Miss
+jungleAndQuest %>%
+  inner_join(bing_no_miss, by = "word") %>% 
+  count(index = linenumber %/% 50, sentiment, book, sort = TRUE) %>%
+  pivot_wider(names_from = sentiment, values_from = n, 
+              values_fill = list(n = 0)) %>%
+  mutate(net = positive - negative) %>%
+  ggplot(aes(x = index, y = net, fill = book)) + 
+  geom_col(show.legend = FALSE) +
+  theme_bw() +
+  facet_wrap(~book, ncol = 2, scales = "free_x") +
+  ggtitle("Without Miss as Negative")  -> p2
+
+library(gridExtra)
+doubleBing50 <- grid.arrange(p1, p2, nrow = 2)
+```
+
+# tf-idf for Mark Twain's books
+
+1. Download the following books from Author Mark Twain from Project Gutenberg
+- Use the meta_fields argument to include the Book title as part of the download
+- *Huckleberry Finn*,  *Tom Sawyer* , *Connecticut Yankee in King Arthur's Court*, *Life on the Mississippi* , *Prince and the Pauper*,  and *A Tramp Abroad* 
+```{r}
+gutenberg_works() %>%
+  filter(str_detect(author,"Twain")) -> mt
+
+markTwain <- gutenberg_download(c(76, 74, 86, 245, 1837, 119))
+
+adventuresOfHuckleberryFinn <- gutenberg_download(76)
+theAdventuresOfTomSawyer <- gutenberg_download(74)
+aConnecticutYankeeInKingArthursCourt <- gutenberg_download(86)
+lifeOnTheMississippi <- gutenberg_download(245)
+thePrinceAndThePauper <- gutenberg_download(1837)
+aTrampAbroad <- gutenberg_download(119)
+
+markTwainBooks <- bind_rows(mutate(adventuresOfHuckleberryFinn, book = "Adventures Of Huckleberry Finn"),
+          mutate(theAdventuresOfTomSawyer, book = "The Adventures Of Tom Sawyer"),
+          mutate(aConnecticutYankeeInKingArthursCourt, book = "A Connecticut Yankee In King Arthurs Court"),
+          mutate(lifeOnTheMississippi, book = "Life On The Mississippi"),
+          mutate(thePrinceAndThePauper, book = "The Prince And The Pauper"),
+          mutate(aTrampAbroad, book = "A Tramp Abroad"))
+```
+
+2. Modify your earlier function or create a new one to output a tf-idf ready dataframe (**leave the the stop words in the text**)
+- Still unnest, remove any formatting, get rid of any `NA`s and then,  
+- Add the count for each word by title.
+- Use your function to tidy the downloaded texts and save to a variable. It should have 57,130 rows
+```{r}
+readyTfItf <- function(x){
+  stopifnot(is.data.frame(markTwainBooks)) #,nrow(x) == 73326))
+  markTwainBooks %>%
+  unnest_tokens(word, text) %>%
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  filter(!is.na(word)) %>%
+  count(book, word, sort = TRUE) -> markTwainBooks
+
+  # calculate how many words in each book = total variable
+  markTwainBooks %>% 
+  group_by(book) %>% 
+  summarize(total = sum(n), .groups = "keep") -> ttlWords
+  
+  markTwainBooks %>% 
+  left_join(ttlWords, by = "book") -> markTwainBooks 
+  return(markTwainBooks)
+}
+```
+
+3. Calculate the tf-idf
+- Save back to the data frame.
+```{r}
+markTwainBooks %>%
+  readyTfItf() %>%
+  bind_tf_idf(word, book, n) -> markTwainBooks
+```
+
+4. Plot the tf for each book using a faceted graph.
+- Facet by book.
+```{r}
+markTwainBooks %>% 
+ggplot(aes(x = tf, fill = book)) +
+  geom_histogram(show.legend = FALSE) +
+  xlim(NA, 0.0009) +
+  facet_wrap(~book, ncol = 2, scales = "free_y")
+```
+
+5. Show the words with the 15 highest tf-idfs across across all books
+- Only show those rows.
+- How many look like possible names?
+- **possible names: Hendon, Becky, Huck, Joe, Potter, Launcelot, Merlin, Hugh.**
+```{r}
+markTwainBooks %>%
+  arrange(desc(tf_idf)) %>%
+  select(book, tf_idf, everything()) %>%
+  head(15)
+```
+
+6.  Plot the top 7 tf_idf words from each book.
+- Sort in descending order of tf_idf
+- Interpret the plots.
+- **Interpretation: Many top 7 tf_idf words are the real name or English honorifics, such as aunt and prince. Most of the time the words of speeches are nouns.**
+```{r}
+markTwainBooks %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(word = parse_factor(word, levels = rev(unique(word)))) %>% 
+  group_by(book) %>% 
+  slice_max(order_by = tf_idf, n = 7) %>% 
+  ungroup() %>%
+  ggplot(aes(word, tf_idf, fill = book)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = NULL, y = "tf-idf") +
+  facet_wrap(~book, scales = "free") +
+  coord_flip() 
+```
+# Extra Credit Podcasts
+
+- Choose **One** of the following podcasts and answer the questions below:  
+
+a. [Sentiment Preserving Fake Reviews](https://podcasts.apple.com/us/podcast/data-skeptic/id890348705?i=1000483067378)  
+The [Original paper](https://arxiv.org/abs/1907.09177)
+
+b. [Data in Life: Authorship Attribution in Lennon-McCartney Songs](https://podcasts.apple.com/us/podcast/authorship-attribution-of-lennon-mccartney-songs/id890348705?i=1000485519404)
+
+
+c.  [Newsha Ajami| Improving Urban Water Systems Through Data Science, Public Policy and Engineering](https://www.widsconference.org/newsha-ajami2.html)
+
+1. What are some key ideas from this podcast relevant to text sentiment analysis/authorship attribution (1, or 2) or working with large diverse data sets (3)?
+- **I'd choose `Sentiment Preserving Fake Reviews` for answering question.**
+-	Authorship attribution has been a standard problem within Natural Language Processing (NLP)
+-	Advanced neural language models (NLMs) are widely used in sequence generation tasks because they are able to produce fluent and meaningful sentences. They can also be used to generate fake reviews, which can then be used to attack online review systems and influence the buying decisions of online shoppers. As Mr. Adelani mentioned, reviews can have great influence on buyers’ decisions and it is not only the content but also the volume of the reviews that plays a crucial role.
+-	Mr. Adelani discussed the idea of generating sentiment-preserving fake online review by using an example of a positive/negative review and generate more fake reviews similar to it. It is relevant to sentiment analysis/authorship attribution because it preserves the sentiment of the writer and it is like paraphrasing the original review.
+-	It requires experts to train a tailored LM for a specific topic. A low-skilled threat model can be built just by combining publicly available LMs and show that the produced fake reviews can fool both humans and machines. 
+-	Then the GPT-2 NLM is used to generate a large number of high-quality reviews based on a review with the desired sentiment and then using a BERT based text classifier (with accuracy of 96%) to filter out reviews with undesired sentiments. 
+-	Because none of the words in the review are modified, fluent samples like the training data can be generated from the learned distribution. A subjective evaluation with 80 participants demonstrated that this simple method can produce reviews that are as fluent as those written by people.  
+-	Three countermeasures, Grover, GLTR, and OpenAI GPT-2 detector, were found to be difficult to accurately detect fake review.
+
+2. How do you think the ideas discussed may be relevant in your future work?
+- As technology constantly evolves, computer comes to compiling and analyzing structured data through Natural Language Processing. For example, as we learned sentiment words data frame this week, we can directly analyze many words and articles by computer, avoid too subjective effects by human beings. So how to organize and optimal words NLP maybe is the most relevant in the future for us.
