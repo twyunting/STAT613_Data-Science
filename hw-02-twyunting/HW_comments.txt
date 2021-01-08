@@ -1,0 +1,14 @@
+Very Nice!
+2.2.4:  - 0 Fewer steps just to use START and END instead of tmp_1 and tmp_2 in separate and then reassign
+
+
+
+
+
+2.2.7:  - 0 Easier to use bind_rows()
+
+2.2.9a:  - 0.1 X values out of order
+
+
+2.2.9EC-2:  - 0.1 Differentiate between p value significance and practical significance with such a low Adjusted R Squared 
+2.2.10EC:  - 0.25 No interpretation. Consider str_extract(State,"((\\w+\\s\\w+))|(\\w+)")) and parse_factor()

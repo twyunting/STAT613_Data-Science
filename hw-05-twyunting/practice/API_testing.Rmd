@@ -1,0 +1,134 @@
+---
+title: 'STAT 413/613 Homework on Web Data: APIs and Scraping'
+author: "Yunting Chiu"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    number_sections: yes
+    toc: no
+    toc_depth: 4
+urlcolor: blue
+---
+
+# Instructions {-}
+
+- Write your solutions **in this starter file**. 
+  + Modify the "author" field in the YAML header.
+- Commit R Markdown and HTML files (no PDF files). **Push both .Rmd and HTML files to GitHub**.
+  + Make sure you have knitted to HTML for your final submission.
+- **Only include necessary code and data** to answer the questions.
+- Most of the functions you use should be from the tidyverse. **Too much base R **will result in point deductions.
+- Submit a response on Canvas that your assignment is complete on GitHub
+- Feel free to use Pull requests and or email (attach your .Rmd) to ask me any questions.\
+
+**0. Libraries**
+```{r}
+# This package is required for Accessing APIS (HTTP or HTTPS URLS from Web)
+library(httr)
+#This package exposes some additional functions to convert json/text to data frame
+library(rlist)
+#This package exposes some additional functions to convert json/text to data frame
+library(jsonlite)
+#This library is used to manipulate data
+library(tidyverse)
+# This puts the key into your computer’s key and credential manager for storage
+library(keyring)
+# Renviron file using the {usethis} package function
+library(usethis)
+```
+
+# Using APIs
+
+- Pick a website of your choice and use an API to download a data set. Convert elements of interest into a tibble and create a graph to answer a question of interest.
+- State the question and interpret the plot
+
+```{r}
+resp <- GET("https://opendata.arcgis.com/datasets/f08294e5286141c293e9202fcd3e8b57_1.geojson")
+# http_type(resp)
+# This method will tell us what is the type of response fetched from GET() call to the API.
+# http_error(resp) 
+# This method just verifies if the response is error free for processing
+```
+
+```{r}
+# Shows raw data which is not structured and readable, if `as` is not specified, content does its best to guess which output is most appropriate.
+jsonRespText<-content(resp,as="text") 
+#jsonRespText
+```
+
+```{r}
+# Structured data in form of R vectors and lists
+jsonRespParsed <- content(resp) 
+jsonRespParsed$features[[2]]
+resp
+```
+
+```{r}
+# Convert JSON reponse which is in text format to data frame using jsonlite package
+DC2019Crime <- fromJSON(jsonRespText)
+glimpse(DC2019Crime$features$properties) -> aaa
+as_tibble(aaa)
+
+aaa %>%
+  select(SHIFT)
+```
+```{r}
+modJson<-jsonRespParsed$features#. Access data element of whole list and ignore other vectors
+
+head(modJson)
+```
+
+
+
+```{r}
+bestPics <- GET(url = "https://opendata.arcgis.com/datasets/f08294e5286141c293e9202fcd3e8b57_1.geojson", query = list(t = "Crime Incidents in 2019", r = "json"))
+status_code(bestPics)
+headers(bestPics)
+bestPics$connection
+```
+
+# IMDB List of Oscar Winners
+
+IMDB has a list of the [Oscar Best Picture Winners](https://www.imdb.com/search/title/?count=100&groups=oscar_best_picture_winners&sort=year%2Cdesc&ref_=nv_ch_osc).
+
+Scrape the following elements, convert the data into a tibble, tidy it, and clean it to answer the questions below: 
+- Number
+- Title
+- Year
+- MPAA Rating
+- Length in minutes
+- Genre
+- Star Rating
+- Metascore Rating
+- Gross Receipts
+
+Convert the data into a tibble, tidy it, and clean it to answer the following questions:
+
+```{r}
+status_code(bestPics)
+content(bestPics, as = "text")
+```
+
+1. Which two elements are missing the most from the movies?
+
+2. Create a plot of the length of a film and its gross, color coded by rating. 
+- Does MPAA rating matter?  
+
+3. Create a plot with a single Ordinary Least Squares smoothing line with no standard errors showing for predicting stars rating based on metacritic scores. 
+- Is there a meaningful relationship in terms of the $p$-value and adjusted R-Squared?
+
+4. Use an appropriate plot to compare the gross receipts by MPAA rating.
+  + Which MPAA rating has the highest median gross receipts? 
+  + Which are the R-rated movies in the overall top 10 of gross receipts?
+
+  + Extra Credit (1 pts): Use one-way analysis of variance to assess the level of evidence for whether all ratings have the same mean gross receipts. Provide your interpretation of the results.
+
+
+# Extra Credit 1 Pts
+
+- Listen to the AI Today podcast on [Machine Learning Ops](https://podcasts.apple.com/us/podcast/ai-today-podcast-artificial-intelligence-insights-experts/id1279927057?i=1000468771571) and provide your thoughts on the following questions:  
+
+1. Does knowing about Git and GitHub help you in understanding the podcast?  
+
+2. How do you think the ideas of ML OPs will affect your future data science projects?  
+

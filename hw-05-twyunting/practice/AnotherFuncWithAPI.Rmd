@@ -1,0 +1,146 @@
+---
+title: 'STAT 413/613 Homework on Web Data: APIs and Scraping'
+author: "Yunting Chiu"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    number_sections: yes
+    toc: no
+    toc_depth: 4
+urlcolor: blue
+---
+
+# Instructions {-}
+
+- Write your solutions **in this starter file**. 
+  + Modify the "author" field in the YAML header.
+- Commit R Markdown and HTML files (no PDF files). **Push both .Rmd and HTML files to GitHub**.
+  + Make sure you have knitted to HTML for your final submission.
+- **Only include necessary code and data** to answer the questions.
+- Most of the functions you use should be from the tidyverse. **Too much base R **will result in point deductions.
+- Submit a response on Canvas that your assignment is complete on GitHub
+- Feel free to use Pull requests and or email (attach your .Rmd) to ask me any questions.\
+
+**Libraries**
+```{r}
+# This package is required for Accessing APIS (HTTP or HTTPS URLS from Web)
+library(httr)
+# This package exposes some additional functions to convert json/text to data frame
+library(jsonlite)
+# This library is used to manipulate data
+library(tidyverse)
+# This puts the key into your computer’s key and credential manager for storage
+library(keyring)
+# Renviron file using the {usethis} package function
+library(usethis)
+# Add date
+library(lubridate)
+```
+
+# Using APIs
+
+- Pick a website of your choice and use an API to download a data set. Convert elements of interest into a tibble and create a graph to answer a question of interest.
+- State the question and interpret the plot
+
+```{r}
+jsonMarsWeather <- GET("https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0", apikey = key_get("NASA_KEY_SECURE"))
+
+# This method will tell us what is the type of response fetched from GET() call to the API.
+http_type(jsonMarsWeather)
+
+# This method just verifies if the response is error free for processing
+http_error(jsonMarsWeather) 
+
+# glimpse(jsonMarsWeather)
+```
+
+```{r}
+# Shows raw data which is not structured and readable, if `as` is not specified, content does its best to guess which output is most appropriate.
+jsonMarsWeatherText <- content(jsonMarsWeather, as = "text") 
+# print(jsonMarsWeatherText)
+
+# Convert JSON reponse which is in text format to data frame using jsonlite package
+MarsWeather <- fromJSON(jsonMarsWeatherText)
+
+# check the structure
+# glimpse(MarsWeather)
+```
+
+```{r}
+# Write a function to extract the temperature
+av <-  vector(mode = "double", length = 7)
+ct <-  vector(mode = "double", length = 7)
+mn <-  vector(mode = "double", length = 7)
+mx <-  vector(mode = "double", length = 7)
+MarsDate <-  vector(mode = "character", length = 7)
+Sol <-  vector(mode = "character", length = 7)
+
+for (i in 1:7) {
+  av[[i]] <- MarsWeather[[i]]$AT$av # Average of samples over the Sol 
+  ct[[i]] <- MarsWeather[[i]]$AT$ct # Total number of recorded samples over the Sol
+  mn[[i]] <- MarsWeather[[i]]$AT$mn # Minimum data sample over the sol 
+  mx[[i]] <- MarsWeather[[i]]$AT$mx # Maximum data sample over the sol
+  MarsDate[[i]] <- MarsWeather[[i]]$First_UTC # save First_UTC as MarsDate
+  Sol[[i]] <- MarsWeather$sol_keys[[i]]
+  MarsTemp <- tibble(av, ct, mn, mx, MarsDate, Sol) # save as data frame
+}
+
+MarsTemp %>%
+pivot_longer(c(av, mn, mx), names_to = "Measurement", values_to = "Temp") %>%
+  separate(MarsDate, c("MarsDate", "MarsTime"), sep = "T") %>%
+  mutate(MarsDate = ymd(MarsDate)) %>%
+  select(-MarsTime) -> MarsWeekTemp
+```
+
+```{r}
+MarsWeekTemp %>%
+  ggplot(aes(x = as.character(MarsDate), y = Temp, color = Measurement)) +
+  geom_point() +
+  theme_bw() +
+  labs(title = "The Latest Temperature on Mars ", 
+       x = "Date on Mars", y = "Degree (°C)") +
+  scale_color_discrete(labels = c("Average", "Minimum", "Maximum")) +
+  geom_hline(yintercept = -62.78, linetype = "dashed", 
+                color = "gray", size = 1) # Mar's Average degree temperature
+```
+
+# IMDB List of Oscar Winners
+
+IMDB has a list of the [Oscar Best Picture Winners](https://www.imdb.com/search/title/?count=100&groups=oscar_best_picture_winners&sort=year%2Cdesc&ref_=nv_ch_osc).
+
+Scrape the following elements, convert the data into a tibble, tidy it, and clean it to answer the questions below: 
+- Number
+- Title
+- Year
+- MPAA Rating
+- Length in minutes
+- Genre
+- Star Rating
+- Metascore Rating
+- Gross Receipts
+
+Convert the data into a tibble, tidy it, and clean it to answer the following questions:
+
+1. Which two elements are missing the most from the movies?
+
+2. Create a plot of the length of a film and its gross, color coded by rating. 
+- Does MPAA rating matter?  
+
+3. Create a plot with a single Ordinary Least Squares smoothing line with no standard errors showing for predicting stars rating based on metacritic scores. 
+- Is there a meaningful relationship in terms of the $p$-value and adjusted R-Squared?
+
+4. Use an appropriate plot to compare the gross receipts by MPAA rating.
+  + Which MPAA rating has the highest median gross receipts? 
+  + Which are the R-rated movies in the overall top 10 of gross receipts?
+
+  + Extra Credit (1 pts): Use one-way analysis of variance to assess the level of evidence for whether all ratings have the same mean gross receipts. Provide your interpretation of the results.
+
+
+# Extra Credit 1 Pts
+
+- Listen to the AI Today podcast on [Machine Learning Ops](https://podcasts.apple.com/us/podcast/ai-today-podcast-artificial-intelligence-insights-experts/id1279927057?i=1000468771571) and provide your thoughts on the following questions:  
+
+1. Does knowing about Git and GitHub help you in understanding the podcast?  
+
+2. How do you think the ideas of ML OPs will affect your future data science projects?  
+
