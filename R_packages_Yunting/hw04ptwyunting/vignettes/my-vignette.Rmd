@@ -1,0 +1,41 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(hw04ptwyunting)
+```
+
+The goal of hw04ptwyunting is to accomplish a math formula in sequence with a proper graph.
+
+## Author
+My name is Yunting Chiu, and I am a Data Science student at American University.\
+For more details about me please visit my [GitHub](https://github.com/twyunting) and  [LinkedIn](https://www.linkedin.com/in/yuntingchiu/).
+
+## Installation
+
+You can install the released version of `hw04ptwyunting` by asking me.\
+My GitHub ID is: [twyunting](https://github.com/twyunting) or mailing me: yc6705a@american.edu
+
+``` r
+install.packages("hw04ptwyunting")
+```
+
+## Functions
+**hw04ptwyunting** package includes two functions.\
+1. `myseq_n()`\
+2. `numSeqPlot()`\
+
+

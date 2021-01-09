@@ -1,0 +1,29 @@
+Package: hw04ptwyunting
+Title: My first personal R package
+Version: 0.0.0.9003
+Authors@R: 
+    person(given = "Yunting",
+           family = "Chiu",
+           role = c("aut", "cre"),
+           email = "yc6705a@american.edu",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package aims to make a math formula in sequence with a proper graph.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    spelling,
+    testthat,
+    knitr,
+    rmarkdown
+Language: en-US
+VignetteBuilder: knitr
+Imports: 
+    ggplot2,
+    magrittr,
+    tibble
+URL: https://github.com/STAT-413-613-Fall-2020/hw04ptwyunting
+BugReports: https://github.com/STAT-413-613-Fall-2020/hw04ptwyunting/issues
+
